@@ -1,4 +1,6 @@
-# variables.tf
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
 
 variable "project_id" {
   type        = string
@@ -22,16 +24,6 @@ variable "create_pull_subscriptions" {
   default     = false
 }
 
-
-variable "pull_subscription_ttl" {
-  description = "Time-to-live for pull subscriptions"
-  default     = "10m"
-}
-
-variable "pull_subscription_dead_letter_topic" {
-  description = "Dead letter topic for pull subscriptions"
-}
-
 variable "create_push_subscriptions" {
   description = "Whether to create push subscriptions"
   default     = false
@@ -40,10 +32,6 @@ variable "create_subscriptions" {
   type        = bool
   description = "Specify true if you want to create subscriptions."
   default     = true
-}
-
-variable "push_subscription_dead_letter_topic" {
-  description = "Dead letter topic for push subscriptions"
 }
 
 variable "push_subscriptions" {
@@ -83,5 +71,65 @@ variable "subscription_labels" {
 }
 
 
+variable "topic_labels" {
+  type        = map(string)
+  description = "A map of labels to assign to the Pub/Sub topic."
+  default     = {}
+}
 
+variable "topic_message_retention_duration" {
+  type        = string
+  description = "The minimum duration in seconds to retain a message after it is published to the topic."
+  default     = null
+}
 
+variable "message_storage_policy" {
+  type        = map(any)
+  description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
+  default     = {}
+}
+
+variable "topic_iam_binding" {
+  description = "Flag to create IAM binding for Pub/Sub topic"
+  type        = bool
+  default     = false
+}
+
+variable "pull_subscription_iam_binding" {
+  description = "Flag to create IAM binding for Pub/Sub pull subscription"
+  type        = bool
+  default     = true
+}
+
+variable "push_subscription_iam_binding" {
+  description = "Flag to create IAM binding for Pub/Sub push subscription"
+  type        = bool
+  default     = true
+}
+
+variable "push_subscription_roles_members" {
+  description = "List of roles and members for push subscriptions"
+  type = list(object({
+    role   = string
+    member = string
+  }))
+  default = []
+}
+
+variable "pull_subscription_roles_members" {
+  description = "List of roles and members for pull subscriptions"
+  type = list(object({
+    role   = string
+    member = string
+  }))
+  default = []
+}
+
+variable "topic_iam_binding_roles_members" {
+  description = "List of roles and members for topic"
+  type = list(object({
+    role   = string
+    member = string
+  }))
+  default = []
+}

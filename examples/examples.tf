@@ -1,48 +1,15 @@
----
-#
-# This is the canonical configuration for the `README.md`
-# Run `make readme` to rebuild the `README.md`
-#
+ provider "google" {
+  project     = var.gcp_project_id
+  credentials = var.gcp_credentials
+  region      = var.gcp_region
+  zone        = var.gcp_zone
+}
 
-# Name of this project
-name : Terraform Module for Google Cloud Pub/Sub
+# ------------------------------------------------------------------------------
+# Module
+# ------------------------------------------------------------------------------
 
-# License of this project
-license: "APACHE"
-
-# Canonical GitHub repo
-github_repo: clouddrove/terraform-gcp-pubsub
-
-# Badges to display
-badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/clouddrove/terraform-gcp-pubsub.svg"
-    url: "https://github.com/clouddrove/terraform-gcp-pubsub/releases/latest"
-  - name: "tfsec"
-    image: "https://github.com/clouddrove/terraform-gcp-pubsub/actions/workflows/tfsec.yml/badge.svg"
-    url: "https://github.com/clouddrove/terraform-gcp-pubsub/actions/workflows/tfsec.yml"
-   - name: "Licence"
-    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
-    url: "LICENSE.md"
-  - name: "Changelog"
-    image: "https://img.shields.io/badge/Changelog-blue"
-    url: "CHANGELOG.md"
-
-prerequesties:
-  - name: Terraform
-    url: https://learn.hashicorp.com/terraform/getting-started/install.html
-    version: ">= 1.7.0"
-    
-#  description of this project
-description: |-
-  This Terraform module provides a foundational structure for creating GCP Cloud Pub/Sub modules. It enables the automated provisioning and management of Pub/Sub topics, subscriptions, and IAM policies, offering a consistent and scalable approach to messaging and event-driven architectures on Google Cloud Platform.
-
-# How to use this project
-# How to use this project
-usage: |-
-  Here are some examples of how you can use this module in your inventory structure:
-  ```hcl
-  module "pubsub" {
+module "pubsub" {
   source  = "../"
   
   project_id = "clouddrove-1"
@@ -106,5 +73,4 @@ usage: |-
     definition = "{\n  \"type\" : \"record\",\n  \"name\" : \"Avro\",\n  \"fields\" : [\n    {\n      \"name\" : \"StringField\",\n      \"type\" : \"string\"\n    },\n    {\n      \"name\" : \"IntField\",\n      \"type\" : \"int\"\n    }\n  ]\n}\n"
   }
 
-  }
-  ```
+}
