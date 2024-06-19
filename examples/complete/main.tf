@@ -6,7 +6,7 @@
 module "pubsub" {
   source = "../../"
 
-  project_id           = "my-project-44865-424207"
+  project_id           = "clouddrove-1"
   topic                = "topic-2"
   create_topic         = true
   create_subscriptions = true
