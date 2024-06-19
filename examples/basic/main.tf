@@ -18,13 +18,6 @@ module "pubsub" {
       member = "user:example@example.com"
     },
   ]
-  pull_subscription_iam_binding = false
-  pull_subscription_roles_members = [
-    {
-      role   = "roles/pubsub.subscriber"
-      member = "user:example@example.com"
-    },
-  ]
   push_subscription_iam_binding = false
   push_subscription_roles_members = [
     {
