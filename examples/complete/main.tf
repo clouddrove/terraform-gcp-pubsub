@@ -10,7 +10,7 @@ module "pubsub" {
   topic                = "topic-2"
   create_topic         = true
   create_subscriptions = true
-  topic_kms_key_name   = ""
+  topic_kms_key_name   = "example_key_2"
   topic_iam_binding    = false
   topic_iam_binding_roles_members = [
     {
