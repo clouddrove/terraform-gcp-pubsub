@@ -15,7 +15,7 @@ resource "google_pubsub_topic_iam_member" "topic_binding" {
   member  = each.value.member
 
   depends_on = [
-    google_pubsub_topic.pubsub_topic,  
+    google_pubsub_topic.pubsub_topic,
   ]
 }
 
@@ -109,17 +109,17 @@ resource "google_pubsub_topic" "pubsub_topic" {
 resource "google_pubsub_subscription" "pull_subscriptions" {
   for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i } : {}
 
-  name    = each.value.name
-  topic   = var.create_topic ? google_pubsub_topic.pubsub_topic[0].name : var.topic
-  project = var.project_id
-  labels  = var.subscription_labels
+  name                         = each.value.name
+  topic                        = var.create_topic ? google_pubsub_topic.pubsub_topic[0].name : var.topic
+  project                      = var.project_id
+  labels                       = var.subscription_labels
   enable_exactly_once_delivery = lookup(each.value, "enable_exactly_once_delivery", null)
-  ack_deadline_seconds = lookup(each.value, "ack_deadline_seconds", local.default_ack_deadline_seconds)
-  message_retention_duration = lookup(each.value, "message_retention_duration", null)
-  retain_acked_messages = lookup(each.value, "retain_acked_messages", null)
-  filter = lookup(each.value, "filter", null)
-  enable_message_ordering = lookup(each.value, "enable_message_ordering", null)
-  
+  ack_deadline_seconds         = lookup(each.value, "ack_deadline_seconds", local.default_ack_deadline_seconds)
+  message_retention_duration   = lookup(each.value, "message_retention_duration", null)
+  retain_acked_messages        = lookup(each.value, "retain_acked_messages", null)
+  filter                       = lookup(each.value, "filter", null)
+  enable_message_ordering      = lookup(each.value, "enable_message_ordering", null)
+
   dynamic "expiration_policy" {
     for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
     content {
@@ -155,14 +155,14 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
 resource "google_pubsub_subscription" "push_subscriptions" {
   for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.name => i } : {}
 
-  name    = each.value.name
-  topic   = var.create_topic ? google_pubsub_topic.pubsub_topic[0].name : var.topic
-  project = var.project_id
-  labels  = var.subscription_labels
-  ack_deadline_seconds = lookup(each.value, "ack_deadline_seconds", local.default_ack_deadline_seconds)
+  name                       = each.value.name
+  topic                      = var.create_topic ? google_pubsub_topic.pubsub_topic[0].name : var.topic
+  project                    = var.project_id
+  labels                     = var.subscription_labels
+  ack_deadline_seconds       = lookup(each.value, "ack_deadline_seconds", local.default_ack_deadline_seconds)
   message_retention_duration = lookup(each.value, "message_retention_duration", null)
-  retain_acked_messages = lookup(each.value, "retain_acked_messages", null)
-  filter = lookup(each.value, "filter", null)
+  retain_acked_messages      = lookup(each.value, "retain_acked_messages", null)
+  filter                     = lookup(each.value, "filter", null)
 
   dynamic "expiration_policy" {
     for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
