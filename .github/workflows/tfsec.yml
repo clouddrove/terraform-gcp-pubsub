@@ -4,8 +4,14 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
-  tfsec:
+  basic:
     uses: clouddrove/github-shared-workflows/.github/workflows/tfsec.yml@1.2.4
     secrets: inherit
     with:
-      working_directory: './examples/'
+      working_directory: './examples/basic/'
+
+  complete:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tfsec.yml@1.2.4
+    secrets: inherit
+    with:
+      working_directory: './examples/complete/'    

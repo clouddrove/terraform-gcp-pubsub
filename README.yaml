@@ -43,7 +43,7 @@ usage: |-
   Here are some examples of how you can use this module in your inventory structure:
   ```hcl
   module "pubsub" {
-  source  = "../"
+  source  = "../../"
   
   project_id = "clouddrove-1"
   topic      = "topic-1"

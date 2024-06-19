@@ -6,7 +6,7 @@
 module "pubsub" {
   source = "../../"
 
-  project_id           = "clouddrove-1"
+  project_id           = "my-project-44865-424207"
   topic                = "topic-1"
   create_topic         = true
   create_subscriptions = true
@@ -15,7 +15,7 @@ module "pubsub" {
   topic_iam_binding_roles_members = [
     {
       role   = "roles/pubsub.subscriber"
-      member = "user:example@example.com"
+      member = "user:ashutosh.mahajan@clouddrove.com"
     },
   ]
   push_subscription_iam_binding = false
