@@ -7,7 +7,7 @@ locals {
 # ------------------------------------------------------------------------------
 
 resource "google_pubsub_topic_iam_member" "topic_binding" {
-  for_each = var.topic_iam_binding ? { for idx, binding in var.topic_iam_binding_roles_members : "${idx}" => binding } : {}
+  for_each = var.topic_iam_binding && length(var.topic_iam_binding_roles_members) > 0 ? { for idx, binding in var.topic_iam_binding_roles_members : idx => binding } : {}
 
   project = var.project_id
   topic   = var.create_topic ? google_pubsub_topic.pubsub_topic[0].name : var.topic
@@ -24,7 +24,7 @@ resource "google_pubsub_topic_iam_member" "topic_binding" {
 # ------------------------------------------------------------------------------
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
-  for_each = var.pull_subscription_iam_binding ? { for idx, binding in var.pull_subscription_roles_members : "${idx}" => binding } : {}
+  for_each = var.pull_subscription_iam_binding && length(var.pull_subscription_roles_members) > 0 ? { for idx, binding in var.pull_subscription_roles_members : idx => binding } : {}
 
   project      = var.project_id
   subscription = "pull"
@@ -45,7 +45,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
 # ------------------------------------------------------------------------------
 
 resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
-  for_each = var.push_subscription_iam_binding ? { for idx, binding in var.push_subscription_roles_members : "${idx}" => binding } : {}
+  for_each = var.push_subscription_iam_binding && length(var.push_subscription_roles_members) > 0 ? { for idx, binding in var.push_subscription_roles_members : idx => binding } : {}
 
   project      = var.project_id
   subscription = "push"

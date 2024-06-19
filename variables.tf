@@ -19,15 +19,6 @@ variable "create_topic" {
   default     = true
 }
 
-variable "create_pull_subscriptions" {
-  description = "Whether to create pull subscriptions"
-  default     = false
-}
-
-variable "create_push_subscriptions" {
-  description = "Whether to create push subscriptions"
-  default     = false
-}
 variable "create_subscriptions" {
   type        = bool
   description = "Specify true if you want to create subscriptions."

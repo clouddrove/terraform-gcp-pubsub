@@ -1,18 +1,18 @@
-# provider "google" {
-#   project     = var.gcp_project_id
-#   credentials = var.gcp_credentials
-#   region      = var.gcp_region
-#   zone        = var.gcp_zone
-# }
+provider "google" {
+  project     = var.gcp_project_id
+  credentials = var.gcp_credentials
+  region      = var.gcp_region
+  zone        = var.gcp_zone
+}
 
 # ------------------------------------------------------------------------------
 # Module
 # ------------------------------------------------------------------------------
 
 module "pubsub" {
-  source = "../"
+  source = "../../"
 
-  project_id           = "my-project-44865-424207"
+  project_id           = "clouddrove-1"
   topic                = "topic-1"
   create_topic         = true
   create_subscriptions = true
@@ -21,11 +21,11 @@ module "pubsub" {
   topic_iam_binding_roles_members = [
     {
       role   = "roles/pubsub.subscriber"
-      member = "user:ashutosh.mahajan@clouddrove.com"
+      member = "user:example@example.com"
     },
     {
       role   = "roles/pubsub.viewer"
-      member = "serviceAccount:my-project-44865-424207@appspot.gserviceaccount.com"
+      member = "serviceAccount:example@example.gserviceaccount.com"
     }
   ]
   pull_subscription_iam_binding = false
@@ -55,15 +55,6 @@ module "pubsub" {
       name                         = "pull"
       ack_deadline_seconds         = 10
       enable_exactly_once_delivery = true
-    },
-  ]
-  push_subscriptions = [
-    {
-      name                 = "push"
-      push_endpoint        = ""
-      x-goog-version       = "v1beta1"
-      ack_deadline_seconds = 20
-      expiration_policy    = "1209600s"
     },
   ]
   schema = {
