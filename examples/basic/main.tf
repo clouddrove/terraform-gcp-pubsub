@@ -22,7 +22,7 @@ module "pubsub" {
   push_subscription_roles_members = [
     {
       role   = "roles/pubsub.subscriber"
-      member = "user:example@example.com"
+      member = "serviceAccount:example@example.gserviceaccount.com"
     },
   ]
 
