@@ -15,7 +15,7 @@ module "pubsub" {
   topic_iam_binding_roles_members = [
     {
       role   = "roles/pubsub.subscriber"
-      member = "user:example@example.com"
+      member = "group:example@example.com"
     },
   ]
   push_subscription_iam_binding = false

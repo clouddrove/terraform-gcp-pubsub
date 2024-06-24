@@ -15,7 +15,7 @@ module "pubsub" {
   topic_iam_binding_roles_members = [
     {
       role   = "roles/pubsub.subscriber"
-      member = "user:example@example.com"
+      member = "group:example@example.com"
     },
     {
       role   = "roles/pubsub.viewer"
@@ -26,7 +26,7 @@ module "pubsub" {
   pull_subscription_roles_members = [
     {
       role   = "roles/pubsub.subscriber"
-      member = "user:example@example.com"
+      member = "group:example@example.com"
     },
     {
       role   = "roles/pubsub.viewer"
