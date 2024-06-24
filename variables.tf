@@ -89,13 +89,13 @@ variable "topic_iam_binding" {
 variable "pull_subscription_iam_binding" {
   description = "Flag to create IAM binding for Pub/Sub pull subscription"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "push_subscription_iam_binding" {
   description = "Flag to create IAM binding for Pub/Sub push subscription"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "push_subscription_roles_members" {
