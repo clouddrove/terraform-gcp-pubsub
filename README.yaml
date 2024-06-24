@@ -5,7 +5,7 @@
 #
 
 # Name of this project
-name : Terraform Module for Google Cloud Pub/Sub
+name : Terraform GCP Pubsub
 
 # License of this project
 license: "APACHE"
@@ -33,6 +33,11 @@ prerequesties:
     url: https://learn.hashicorp.com/terraform/getting-started/install.html
     version: ">= 1.7.0"
     
+providers:
+  - name: gcp
+    url: https://cloud.google.com/
+    version: ">= 5.22.0"
+
 #  description of this project
 description: |-
   This Terraform module provides a foundational structure for creating GCP Cloud Pub/Sub modules. It enables the automated provisioning and management of Pub/Sub topics, subscriptions, and IAM policies, offering a consistent and scalable approach to messaging and event-driven architectures on Google Cloud Platform.
