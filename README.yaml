@@ -21,7 +21,7 @@ badges:
   - name: "tfsec"
     image: "https://github.com/clouddrove/terraform-gcp-pubsub/actions/workflows/tfsec.yml/badge.svg"
     url: "https://github.com/clouddrove/terraform-gcp-pubsub/actions/workflows/tfsec.yml"
-   - name: "Licence"
+  - name: "Licence"
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
     url: "LICENSE.md"
   - name: "Changelog"
