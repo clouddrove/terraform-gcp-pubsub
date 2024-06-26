@@ -5,40 +5,104 @@
 #
 
 # Name of this project
-name : Terraform Module Template
+name : Terraform GCP Pubsub
 
 # License of this project
 license: "APACHE"
 
 # Canonical GitHub repo
-github_repo: clouddrove/terraform-module-template
+github_repo: clouddrove/terraform-gcp-pubsub
 
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/clouddrove/terraform-module-template.svg"
-    url: "https://github.com/clouddrove/terraform-module-template/releases/latest"
+    image: "https://img.shields.io/github/release/clouddrove/terraform-gcp-pubsub.svg"
+    url: "https://github.com/clouddrove/terraform-gcp-pubsub/releases/latest"
   - name: "tfsec"
-    image: "https://github.com/clouddrove/terraform-module-template/actions/workflows/tfsec.yml/badge.svg"
-    url: ""
-  - name: "Licence"
+    image: "https://github.com/clouddrove/terraform-gcp-pubsub/actions/workflows/tfsec.yml/badge.svg"
+    url: "https://github.com/clouddrove/terraform-gcp-pubsub/actions/workflows/tfsec.yml"
+   - name: "Licence"
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
     url: "LICENSE.md"
+  - name: "Changelog"
+    image: "https://img.shields.io/badge/Changelog-blue"
+    url: "CHANGELOG.md"
 
 prerequesties:
-  - name: Terraform 1.4.6
+  - name: Terraform
     url: https://learn.hashicorp.com/terraform/getting-started/install.html
+    version: ">= 1.7.0"
     
+providers:
+  - name: gcp
+    url: https://cloud.google.com/
+    version: ">= 5.22.0"
+
 #  description of this project
 description: |-
-  Terraform module template to create new modules using this as baseline
-# extra content
-include:
-  - "terraform.md"
+  This Terraform module provides a foundational structure for creating GCP Cloud Pub/Sub modules. It enables the automated provisioning and management of Pub/Sub topics, subscriptions, and IAM policies, offering a consistent and scalable approach to messaging and event-driven architectures on Google Cloud Platform.
 
 # How to use this project
 # How to use this project
 usage: |-
   Here are some examples of how you can use this module in your inventory structure:
   ```hcl
-    ```
+  module "pubsub" {
+  source  = "../../"
+  
+  project_id = "clouddrove-1"
+  topic      = "topic-1"
+  create_topic = true
+  create_subscriptions = true
+  topic_kms_key_name  = ""
+  topic_iam_binding   = true
+  topic_iam_binding_roles_members = [
+    {
+      role   = "roles/pubsub.subscriber"
+      member = "group:example@example.com"
+    },
+    {
+      role   = "roles/pubsub.viewer"
+      member = "serviceAccount:example@example.gserviceaccount.com"
+    }
+  ]
+  pull_subscription_iam_binding = true
+  pull_subscription_roles_members = [
+    {
+      role   = "roles/pubsub.subscriber"
+      member = "group:example@example.com"
+    },
+    {
+      role   = "roles/pubsub.viewer"
+      member = "serviceAccount:example@example.gserviceaccount.com"
+    }
+  ]
+  push_subscription_iam_binding = true
+  push_subscription_roles_members = [
+    {
+      role   = "roles/pubsub.subscriber"
+      member = "group:example@example.com"
+    },
+    {
+      role   = "roles/pubsub.viewer"
+      member = "serviceAccount:example@example.gserviceaccount.com"
+    }
+  ]
+  pull_subscriptions = [
+    {
+      name                         = "pull"
+      ack_deadline_seconds         = 10
+      enable_exactly_once_delivery = true
+    },
+  ]
+  push_subscriptions = [
+    {
+      name                 = "push"
+      push_endpoint        = ""
+      x-goog-version       = "v1beta1"
+      ack_deadline_seconds = 20
+      expiration_policy    = "1209600s" 
+    },
+  ]
+  }
+  ```
