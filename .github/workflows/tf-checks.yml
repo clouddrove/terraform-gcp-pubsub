@@ -9,10 +9,8 @@ jobs:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.5
     with:
       working_directory: './examples/basic/'
-      provider: gcp
  
   complete:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.5
     with:
       working_directory: './examples/complete/'
-      provider: gcp
