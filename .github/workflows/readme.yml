@@ -5,10 +5,11 @@ on:
       - master
     paths-ignore:
       - 'README.md'
+      - 'docs/**'
   workflow_dispatch:
 jobs:
-  assignee:
-    uses: clouddrove/github-shared-workflows/.github/workflows/readme.yml@2.0.0
+  README:
+    uses: clouddrove/github-shared-workflows/.github/workflows/readme.yml@master
     secrets:
       TOKEN : ${{ secrets.GITHUB }}
       SLACK_WEBHOOK_TERRAFORM: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }}
