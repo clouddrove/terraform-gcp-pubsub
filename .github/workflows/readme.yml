@@ -10,7 +10,6 @@ on:
 jobs:
   README:
     uses: clouddrove/github-shared-workflows/.github/workflows/readme.yml@master
-    secrets: inherit
     secrets:
-      #TOKEN : ${{ secrets.GITHUB_TOKEN }}
+      TOKEN : ${{ secrets.GITHUB_TOKEN }}
       SLACK_WEBHOOK_TERRAFORM: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }}
